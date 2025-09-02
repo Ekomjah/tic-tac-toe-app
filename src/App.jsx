@@ -72,7 +72,7 @@ function App() {
           RESET BOARD
         </button>
       </div>
-      <a href="https://www.exploratorium.edu/explore/puzzles/tictactoe">
+      <a href="https://www.exploratorium.edu/explore/puzzles/tictactoe" target="_blank">
         How to play?
       </a>
     </>
