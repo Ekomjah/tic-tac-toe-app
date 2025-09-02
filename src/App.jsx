@@ -16,11 +16,9 @@ function App() {
   function gameShow(index) {
     if (msg.includes("winner") || gameArr[index] !== null) return;
 
-    // Copy array and update the clicked cell
     const newArr = [...gameArr];
     newArr[index] = isClicked ? "X" : "O";
 
-    // Check for winner
     const winArrIndex = gameLogic(newArr);
     if (winArrIndex !== undefined) {
       setMsg(isClicked ? "X is the winner!" : "O is the winner!");
