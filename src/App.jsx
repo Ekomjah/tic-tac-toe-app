@@ -14,30 +14,24 @@ function App() {
     setMsg("X starts!");
   }
   function gameShow(index) {
-    setGameArr((prev) => {
-      let newArr = prev.map((label, gameIndex) => {
-        if (msg.includes("winner") || label !== null) {
-          return label;
-        }
-        if (label === null && gameIndex === index) {
-          setIsClicked(!isClicked);
-          setMsg(isClicked ? "Next Player: O" : "Next Player: X");
-          return isClicked ? "X" : "O";
-        }
-        return label;
-      });
+    if (msg.includes("winner") || gameArr[index] !== null) return;
 
-      const winArrIndex = gameLogic(newArr);
-      if (winArrIndex !== undefined) {
-        setIsClicked(isClicked);
-        setMsg(isClicked ? "X is the winner!" : "O is the winner!");
-      } else if (newArr.every((val) => val !== null)) {
-        setIsClicked(isClicked);
-        setMsg("Its a draw!");
-      }
+    // Copy array and update the clicked cell
+    const newArr = [...gameArr];
+    newArr[index] = isClicked ? "X" : "O";
 
-      return newArr;
-    });
+    // Check for winner
+    const winArrIndex = gameLogic(newArr);
+    if (winArrIndex !== undefined) {
+      setMsg(isClicked ? "X is the winner!" : "O is the winner!");
+    } else if (newArr.every((val) => val !== null)) {
+      setMsg("Its a draw!");
+    } else {
+      setMsg(isClicked ? "Next Player: O" : "Next Player: X");
+    }
+
+    setGameArr(newArr);
+    setIsClicked(!isClicked);
   }
 
   function gameLogic(arr) {
