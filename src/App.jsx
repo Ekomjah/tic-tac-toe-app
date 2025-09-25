@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
@@ -45,9 +43,9 @@ function App() {
     ];
 
     return winArr.find(
-      (group, index) =>
-        group.every((item, i) => arr[item] === "X") ||
-        group.every((item, i) => arr[item] === "O")
+      (group) =>
+        group.every((item) => arr[item] === "X") ||
+        group.every((item) => arr[item] === "O")
     );
   }
 
@@ -72,7 +70,10 @@ function App() {
           RESET BOARD
         </button>
       </div>
-      <a href="https://www.exploratorium.edu/explore/puzzles/tictactoe" target="_blank">
+      <a
+        href="https://www.exploratorium.edu/explore/puzzles/tictactoe"
+        target="_blank"
+      >
         How to play?
       </a>
     </>
