@@ -40,3 +40,64 @@
 .read-the-docs {
   color: #888;
 }
+
+.bgModal {
+  background: linear-gradient(to right, rgb(172, 233, 187), rgb(107, 208, 248), rgb(105, 105, 105));
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.modal {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translate(-50%, -50%);
+}
+
+.error {
+  color: red;
+}
+
+form {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  background-color: azure;
+  flex-direction: column;
+  border-radius: 1rem;
+  gap: 2rem;
+  align-items: center;
+  input {
+    padding: 0.4rem;
+    border-radius: 1rem;
+  }
+}
+
+.modal label {
+  width: 90%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  input {
+    width: 100%;
+  }
+}
+
+.button-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.nameTag {
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: black;
+  align-self: flex-start;
+}

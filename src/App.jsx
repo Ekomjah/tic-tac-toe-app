@@ -1,81 +1,35 @@
 import { useState } from "react";
 import "./App.css";
+import VsFriend from "./1v1.jsx";
+import VsComp from "./1vComp.jsx";
 
 function App() {
-  const xoArr = new Array(9).fill(null);
-  const [isClicked, setIsClicked] = useState(true);
-  const [msg, setMsg] = useState("X starts!");
-  const [gameArr, setGameArr] = useState(xoArr);
-  function reset() {
-    setGameArr(xoArr);
-    setIsClicked(true);
-    setMsg("X starts!");
-  }
-  function gameShow(index) {
-    if (msg.includes("winner") || gameArr[index] !== null) return;
-
-    const newArr = [...gameArr];
-    newArr[index] = isClicked ? "X" : "O";
-
-    const winArrIndex = gameLogic(newArr);
-    if (winArrIndex !== undefined) {
-      setMsg(isClicked ? "X is the winner!" : "O is the winner!");
-    } else if (newArr.every((val) => val !== null)) {
-      setMsg("Its a draw!");
-    } else {
-      setMsg(isClicked ? "Next Player: O" : "Next Player: X");
-    }
-
-    setGameArr(newArr);
-    setIsClicked(!isClicked);
-  }
-
-  function gameLogic(arr) {
-    const winArr = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
-    return winArr.find(
-      (group) =>
-        group.every((item) => arr[item] === "X") ||
-        group.every((item) => arr[item] === "O")
-    );
-  }
-
+  const [openTab, setOpenTab] = useState("");
   return (
     <>
-      <h1>A Tic-Tac-Toe game!</h1>
-      <div className="btn-container">
-        {msg && <p className="message">{msg}</p>}
-
-        {gameArr.map((item, index) => (
-          <button
-            className="square"
-            key={index}
-            onClick={() => {
-              gameShow(index);
-            }}
-          >
-            {item}
-          </button>
-        ))}
-        <button onClick={reset} className="reset" id="reset">
-          RESET BOARD
-        </button>
-      </div>
-      <a
-        href="https://www.exploratorium.edu/explore/puzzles/tictactoe"
-        target="_blank"
-      >
-        How to play?
-      </a>
+      {!openTab ? (
+        <div>
+          <h1>A Tic-Tac-Toe game!</h1>
+          <div className="app-btn">
+            <button
+              style={{ color: "white", background: "green" }}
+              onClick={() => setOpenTab("vsFriend")}
+            >
+              Play a friend
+            </button>
+            <button
+              className="!bg-purple-700 !text-white"
+              onClick={() => setOpenTab("vsComp")}
+            >
+              Play vs Computer
+            </button>
+          </div>
+        </div>
+      ) : openTab === "vsFriend" ? (
+        <VsFriend />
+      ) : (
+        <VsComp />
+      )}
     </>
   );
 }
