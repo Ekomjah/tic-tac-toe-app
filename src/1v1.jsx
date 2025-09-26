@@ -5,7 +5,6 @@ export default function Onevone() {
   const [isClicked, setIsClicked] = useState(true);
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
-
   const [msg, setMsg] = useState("X starts!");
   const [gameArr, setGameArr] = useState(xoArr);
   const [isModalShowing, setIsModalShowing] = useState(true);
@@ -58,7 +57,7 @@ export default function Onevone() {
     <>
       <h1>A Tic-Tac-Toe game!</h1>
       <div className="btn-container">
-        {msg && <p className="message">{msg}</p>}
+        {msg && <p className="w-max message">{msg}</p>}
 
         {gameArr.map((item, index) => (
           <button
@@ -76,7 +75,15 @@ export default function Onevone() {
         <button onClick={reset} className="reset" id="reset">
           RESET BOARD
         </button>
-        <button onClick={() => setIsModalShowing(true)} className="cta">
+        <button
+          onClick={() => {
+            setIsModalShowing(true);
+            setPlayer1("");
+            setPlayer2("");
+            setMsg("You go first! X");
+          }}
+          className="cta"
+        >
           New Game
         </button>
       </div>
@@ -94,6 +101,7 @@ export default function Onevone() {
         player1={player1}
         player2={player2}
         setIsModalShowing={setIsModalShowing}
+        setGameArr={setGameArr}
       />
     </>
   );

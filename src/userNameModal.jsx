@@ -6,9 +6,11 @@ export default function ModalFunc({
   player1,
   player2,
   setIsModalShowing,
+  setGameArr,
 }) {
   const [isSpan1Hidden, setIsSpan1Hidden] = useState(true);
   const [isSpan2Hidden, setIsSpan2Hidden] = useState(true);
+  const xoArr = new Array(9).fill(null);
 
   function onsubmit(e) {
     e.preventDefault();
@@ -18,9 +20,8 @@ export default function ModalFunc({
     } else {
       setIsSpan1Hidden(true);
       setIsSpan2Hidden(true);
-      setPlayer1("");
-      setPlayer2("");
       setIsModalShowing(!isModalShowing);
+      setGameArr(xoArr);
       return;
     }
   }
@@ -36,7 +37,9 @@ export default function ModalFunc({
                 <input
                   type="text"
                   value={player1}
+                  className="border-1 bg-gray-700 text-gray-50 font-medium"
                   onChange={(e) => setPlayer1(e.target.value)}
+                  placeholder="Your name..."
                   name="player1"
                   id="player1"
                 />
@@ -45,12 +48,14 @@ export default function ModalFunc({
                 </span>
               </label>
               <label htmlFor="player2">
-                <div className="nameTag">It&apos;s a nice day!</div>
+                <div className="nameTag">Your friend&apos;s:</div>
                 <input
                   type="text"
+                  className="border-1 bg-gray-700 text-gray-50 font-medium"
                   value={player2}
                   onChange={(e) => setPlayer2(e.target.value)}
                   name="player2"
+                  placeholder="Your friend's..."
                   id="player2"
                 />
                 <span className="error" hidden={isSpan2Hidden}>
