@@ -22,7 +22,9 @@ export default function Onevone() {
 
     const winArrIndex = gameLogic(newArr);
     if (winArrIndex !== undefined) {
-      setMsg(isClicked ? player1 + " is the winner!" : player2 + " is the winner!");
+      setMsg(
+        isClicked ? player1 + " is the winner!" : player2 + " is the winner!",
+      );
     } else if (newArr.every((val) => val !== null)) {
       setMsg("Its a draw!");
     } else {
@@ -47,7 +49,8 @@ export default function Onevone() {
 
     return winArr.find(
       (group) =>
-        group.every((item) => arr[item] === "X") || group.every((item) => arr[item] === "O")
+        group.every((item) => arr[item] === "X") ||
+        group.every((item) => arr[item] === "O"),
     );
   }
 
@@ -77,7 +80,11 @@ export default function Onevone() {
           New Game
         </button>
       </div>
-      <a href="https://www.exploratorium.edu/explore/puzzles/tictactoe" target="_blank">
+      <a
+        href="https://www.exploratorium.edu/explore/puzzles/tictactoe"
+        target="_blank"
+        rel="noreferrer"
+      >
         How to play?
       </a>
       <NameModal
